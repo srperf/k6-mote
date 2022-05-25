@@ -46,10 +46,9 @@ The rendezvous lift is different from real life, where you have to wait for the 
 ![EmptyLift](./images/skiLiftEmpty.png)
 
 Example: 
-
-	```
-	rendezvous(numberOfVUsers, timeToWait);
-	```
+```
+rendezvous(numberOfVUsers, timeToWait);
+```
 
 ## How to, in k6
 
