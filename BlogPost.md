@@ -12,7 +12,7 @@ Thanks to the contribution of [Mark Tomlinson](https://www.linkedin.com/in/mtoml
 Rendezvous is a function that allows the virtual users in a scenario to run the steps of a script, everyone at their own pace or arrival rate. But once everyone reaches a specific step, the function makes them wait some time or for more people to get to that step and then execute it simultaneously.
 
 To explain it better, let's use Mark's example.
-![SkiPark](images/skiPark.png)
+![SkiPark](../../images/skiPark.png)
 Imagine you are at a ski resort or park. In those places, the people would follow these steps:
 
 1.  Get to the park
