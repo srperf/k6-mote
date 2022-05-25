@@ -12,7 +12,7 @@ Thanks to the contribution of [Mark Tomlinson](https://www.linkedin.com/in/mtoml
 Rendezvous is a function that allows the virtual users in a scenario to run the steps of a script, everyone at their own pace or arrival rate. But once everyone reaches a specific step, the function makes them wait some time or for more people to get to that step and then execute it simultaneously.
 
 To explain it better, let's use Mark's example.
-![SkiPark](../images/skiPark.png)
+![SkiPark](./images/skiPark.png)
 Imagine you are at a ski resort or park. In those places, the people would follow these steps:
 
 1.  Get to the park
@@ -30,7 +30,7 @@ Imagine you are at a ski resort or park. In those places, the people would follo
 13.  Go home
 
 Step 6 is our point of interest, as it is an excellent rendezvous example.
-![SkiLift](../images/skiLift1.png)
+![SkiLift](./images/skiLift1.png)
 In a ski park, you have multiple people, each doing their set of steps at their own pace. Some arrived earlier, some just arrived. Once at the park, each person may do things at different speeds. Some may take longer to gear up; for others, the rental area may be slow at rush hours, and some may even pause to go to the bathroom. Once up there, some may ski fast, while others may be slow, depending on if they are beginners or experts.
 
 That sounds a lot like a load test scenario.
@@ -38,11 +38,11 @@ That sounds a lot like a load test scenario.
 Each virtual user executes the steps, iterates, ramps up or down, and has a somewhat different response and wait times on each action. A beautiful load scenario!
 
 But unlike standard scripts where everyone executes at their pace, we have step 6 (wait for the lift), where the users wait as they arrive, and all of them do step 7 (jump on the lift) simultaneously when there are enough people to fill the lift, or the lift has to leave as the next one is coming.
-![Rendezvous](../images/skiLiftQueue.png)
+![Rendezvous](./images/skiLiftQueue.png)
 That is rendezvous in essence. It is a process that holds every user arriving at that step (the lift departing) until enough people are waiting, or it has to leave with whoever is waiting there when the next lift comes. In other words, you define time to wait and people per lift.
 
 The rendezvous lift is different from real life, where you have to wait for the next lift once the first one is full. Here, the lift leaves right after it reaches its capacity. There are more ready to get people right away. But, if the time is up and the following lift arrives, it will depart even if there is only one person inside.
-![EmptyLift](../images/skiLiftEmpty.png)
+![EmptyLift](./images/skiLiftEmpty.png)
 Example: 
 	```
 	rendezvous(numberOfVUsers, timeToWait);
@@ -115,7 +115,7 @@ export default function () {
 ```
 
 With the code above, the virtual users will execute their steps and wait for the mote period to happen before executing step 5. Like in the lift example, the ski lift will leave every 30 seconds with whatever users have arrived at the mote wait. Yes, this one is a lift with infinite capacity.
-![HugeLift](../images/skiLift2.png)
+![HugeLift](./images/skiLift2.png)
 
 Let's do a small scenario with arrivals and multiple users to sow this.
 
@@ -143,7 +143,7 @@ The mote timer is set to 30000 milliseconds. In other words, the first lift will
 In this example, the first ski lift will leave before everyone arrives at the park. Only about 15 users will have arrived when the first lift departs. So only 15 will get on the lift and execute step 5. Then, the last 5 users will gradually enter the scenario. They will wait for the next lift at step 4 and will be joined by whoever of the other 15 who complete the trip before the next 30 seconds.
 
 Running that scenario, we will observe the following results:
-![MoteGraph](../images/moteExplain.png)
+![MoteGraph](./images/moteExplain.png)
 As you can see, every 30 seconds, there is a spike in the number of requests. This means that everyone waited for the lift and executed step 5 every time the 30-second lapse was completed.
 
 ## Start upon arrival
@@ -154,25 +154,15 @@ Quickly implementing it, we could initialize a global flag (moteClean) as _true
 
 ```
 function moteOnArrive(motePeriod) {
-
     var start;
-
     if (moteClean)
-
     {
-
         start=new Date().getTime();
-
         moteFlag=false;
-
     }
-
     var soFar = new Date().getTime() - start;
-
     var waitTime = (motePeriod-(soFar%motePeriod))/1000;
-
     sleep(waitTime);
-
 }
 ```
 
