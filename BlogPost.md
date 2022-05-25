@@ -13,6 +13,7 @@ Rendezvous is a function that allows the virtual users in a scenario to run the 
 
 To explain it better, let's use Mark's example.
 ![SkiPark](./images/skiPark.png)
+
 Imagine you are at a ski resort or park. In those places, the people would follow these steps:
 
 1.  Get to the park
@@ -43,7 +44,9 @@ That is rendezvous in essence. It is a process that holds every user arriving at
 
 The rendezvous lift is different from real life, where you have to wait for the next lift once the first one is full. Here, the lift leaves right after it reaches its capacity. There are more ready to get people right away. But, if the time is up and the following lift arrives, it will depart even if there is only one person inside.
 ![EmptyLift](./images/skiLiftEmpty.png)
+
 Example: 
+
 	```
 	rendezvous(numberOfVUsers, timeToWait);
 	```
@@ -144,6 +147,7 @@ In this example, the first ski lift will leave before everyone arrives at the pa
 
 Running that scenario, we will observe the following results:
 ![MoteGraph](./images/moteExplain.png)
+
 As you can see, every 30 seconds, there is a spike in the number of requests. This means that everyone waited for the lift and executed step 5 every time the 30-second lapse was completed.
 
 ## Start upon arrival
